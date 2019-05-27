@@ -7,7 +7,7 @@ var color_base = d3.rgb(200, 200, 200);
 var stroke_base = d3.rgb(150, 150, 150);
 var stroke_h = d3.rgb(0, 0, 20);
 var stroke_m = d3.rgb(20, 0, 0);
-var stroke_width = 1;
+var stroke_width = 0;
 
 var svg = d3.select("body").append("svg")
     .attr("width", width)
@@ -34,7 +34,7 @@ function add_node(uuid) {
     update_nodes(); 
     console.log(nodes);
 
-    if (nodes.length == 5) {start_ask_genero();}
+    if (nodes.length == 35) {start_ask_genero();}
 }
 
 var force = d3.layout.force();
@@ -57,7 +57,7 @@ function update_nodes() {
     circles().transition()
         .duration(150)
         .delay(function(d, i) { return 100; })
-        .style("fill", function(d, i) { console.log('Color changed' + d.color); return d.color; })
+        .style("fill", function(d, i) { return d.color; })
         .attr("r", function(d) { return d.radius; })
         .style("stroke", function(d) { return d.stroke; })
         .style("stroke-width", function(d) { return d.stroke_width; });
@@ -163,7 +163,7 @@ function add_padres() {
     for (var i = 0; i < nodes.length; i++) {
         if (nodes[i].padres == null) {
             added = true;
-            padres = Math.random() * 10 > 5 ? 'juntos' : 'separados';
+            padres = Math.random() * 10 > 3 ? 'juntos' : 'separados';
             nodes[i].padres = padres;
             if (padres == 'juntos') {
                 nodes[i].stroke_width = 6;
