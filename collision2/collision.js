@@ -163,7 +163,7 @@ function add_padres() {
     for (var i = 0; i < nodes.length; i++) {
         if (nodes[i].padres == null) {
             added = true;
-            padres = Math.random() * 10 > 6 ? 'juntos' : 'separados';
+            padres = Math.random() * 10 > 5 ? 'juntos' : 'separados';
             nodes[i].padres = padres;
             if (padres == 'juntos') {
                 nodes[i].stroke_width = 6;
