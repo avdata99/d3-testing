@@ -167,7 +167,7 @@ function add_padres() {
             nodes[i].padres = padres;
             if (padres == 'juntos') {
                 nodes[i].stroke_width = 6;
-            } else if (genero == 'separados') {
+            } else if (padres == 'separados') {
                 nodes[i].stroke_width = 3;
             }
             break;
