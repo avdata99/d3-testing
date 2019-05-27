@@ -1,0 +1,52 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.2/d3.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.js"></script>
+<div id="area"></div>
+
+<style>
+#area { background: #eee; width: 600px; height: 400px; }
+circle { fill: #933; stroke-width: 2px; stroke: #fff; }
+</style>
+
+<script>
+var canvas = d3.select("#area")
+    .append("svg:svg")
+    .attr("width", 600)
+    .attr("height", 400);
+function getData() {
+  return d3.range(30).map(function() {
+    return {
+      x: Math.random()*600,
+      y: Math.random()*400,
+      r: Math.random()*60
+    };
+  });
+}
+setInterval(function() {
+  var data  = getData();
+  var nodes = canvas.selectAll('g.node').data(data);
+  
+  console.log(data);
+  
+  // On change
+  nodes.select('circle')
+    .transition()
+      .duration(400)
+      .ease('bounce-in')
+      .attr('r', function(d) { return d.r; })
+      .attr('cx', function(d) { return d.x; })
+      .attr('cy', function(d) { return d.y; });
+    
+  // On enter
+  nodes.enter()
+    .append('svg:g')
+    .attr('class', 'node')
+    
+    .append('svg:circle')
+      .attr('r', function(d) { return d.r; })
+      .attr('cx', function(d) { return d.x; })
+      .attr('cy', function(d) { return d.y; });
+  
+  nodes.exit()
+    .remove();
+}, 1000);
+</script>
