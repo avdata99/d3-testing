@@ -25,7 +25,7 @@ var nodes = [];
 //     });
 
 function add_node(uuid) {
-    node = {radius: 25, color: color_base,
+    node = {radius: 35, color: color_base,
             stroke: stroke_base, stroke_width: stroke_width,
             uuid: uuid, genero: null, padres: null};
     console.log(node);
@@ -166,9 +166,9 @@ function add_padres() {
             padres = Math.random() * 10 > 6 ? 'juntos' : 'separados';
             nodes[i].padres = padres;
             if (padres == 'juntos') {
-                nodes[i].stroke_width = 3;
+                nodes[i].stroke_width = 6;
             } else if (genero == 'separados') {
-                nodes[i].stroke_width = 1;
+                nodes[i].stroke_width = 3;
             }
             break;
         }
